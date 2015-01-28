@@ -7,7 +7,6 @@ CUST_VERSION="udp"
 # block udp
 if [ -n "${BLOCKUDP+1}" ]; then
   echo "udp is blocked"
-  CUST_VERSION="blockedudp"
   iptables -A INPUT -p udp --sport 100:65535 --dport 100:65535 -j DROP
   iptables -A OUTPUT -p udp --sport 100:65535 --dport 100:65535 -j DROP
 else
@@ -15,4 +14,4 @@ else
 fi
 
 su - chromeuser &
-start-selenium -role node -hub http://hub:4444/grid/register -browser browserName=chrome,maxInstances=20,version=${CUST_VERSION} $@
+start-selenium $@
