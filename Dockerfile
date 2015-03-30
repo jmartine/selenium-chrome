@@ -7,14 +7,25 @@ RUN apt-get -y -qq update &&\
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list &&\
     apt-get update -y &&\
     mkdir -p /usr/share/desktop-directories &&\
-    apt-get install -y -q google-chrome-stable openjdk-7-jre-headless nodejs x11vnc xvfb &&\
-    npm install -g selenium-standalone@2.44.0-7 &&\
-    apt-get install -y -q xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic &&\
+    apt-get install -y -q \
+            google-chrome-stable \
+            openjdk-7-jre-headless \
+            nodejs \
+            x11vnc \
+            xvfb \
+            xfonts-100dpi \
+            xfonts-75dpi \
+            xfonts-scalable \
+            xfonts-cyrillic \
+            &&\
     useradd -d /home/chromeuser -m chromeuser &&\
     mkdir -p /home/chromeuser/chrome &&\
     chown chromeuser /home/chromeuser/chrome &&\
     chgrp chromeuser /home/chromeuser/chrome &&\
     apt-get clean
+
+RUN npm install -g selenium-standalone@4.2.2 &&\
+    selenium-standalone install
 
 ADD ./scripts/ /home/root/scripts
 
