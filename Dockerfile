@@ -25,7 +25,7 @@ RUN apt-get -y -qq update &&\
     apt-get clean
 
 RUN npm install -g selenium-standalone@4.2.2 &&\
-    selenium-standalone install
+    selenium-standalone install --version=2.45.0
 
 ADD ./scripts/ /home/root/scripts
 
