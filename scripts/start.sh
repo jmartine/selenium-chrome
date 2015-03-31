@@ -14,4 +14,4 @@ else
 fi
 
 su - chromeuser &
-start-selenium $@
+selenium-standalone start -- $@
